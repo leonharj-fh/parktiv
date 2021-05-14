@@ -1,0 +1,327 @@
+---
+swagger: "2.0"
+info:
+  description: "Parktiv Backend Service PBS"
+  version: "0.1"
+  title: "Parktiv"
+basePath: "/parktiv"
+tags:
+- name: "park"
+schemes:
+- "https"
+produces:
+- "application/json"
+paths:
+  /parks:
+    get:
+      tags:
+      - "park"
+      summary: "List of parks containing a QR-Code"
+      description: "List of parks containing a QR-Code"
+      operationId: "list_park"
+      parameters:
+      - name: "Accept_Language"
+        in: "header"
+        description: "The desired language for response content.\n[RFC 2616](https://tools.ietf.org/html/rfc2616#page-104)\n"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/ParksResponse"
+      x-swagger-router-controller: "swagger_server.controllers.park_controller"
+  /animals:
+    get:
+      tags:
+      - "park"
+      summary: "List of all available animals with exercises"
+      description: "List of all available animals with exercises"
+      operationId: "list_animal"
+      parameters:
+      - name: "Accept_Language"
+        in: "header"
+        description: "The desired language for response content.\n[RFC 2616](https://tools.ietf.org/html/rfc2616#page-104)\n"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/AnimalResponse"
+      x-swagger-router-controller: "swagger_server.controllers.park_controller"
+  /animals/memory/random:
+    get:
+      tags:
+      - "park"
+      summary: "Retrieve a random list of animal ids"
+      description: "Retrieve a random list of animals. Each animal id is returned\
+        \ twice."
+      operationId: "animals_memory_random_get"
+      parameters:
+      - name: "size"
+        in: "query"
+        required: true
+        type: "integer"
+        default: 5
+        minimum: 1
+      - name: "Accept_Language"
+        in: "header"
+        description: "The desired language for response content.\n[RFC 2616](https://tools.ietf.org/html/rfc2616#page-104)\n"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              minLength: 1
+        "409":
+          description: "Invalid size value"
+      x-swagger-router-controller: "swagger_server.controllers.park_controller"
+  /roles:
+    get:
+      tags:
+      - "park"
+      summary: "List of roles which can be chosen to complete different exersices"
+      description: "List of roles which can be chosen to complete different exersices"
+      operationId: "roles_get"
+      parameters:
+      - name: "Accept_Language"
+        in: "header"
+        description: "The desired language for response content.\n[RFC 2616](https://tools.ietf.org/html/rfc2616#page-104)\n"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/RoleResponse"
+      x-swagger-router-controller: "swagger_server.controllers.park_controller"
+  /animals/{identifier}/task/{roleId}:
+    get:
+      tags:
+      - "park"
+      summary: "Get a specific animal including the task"
+      description: "Get a specific animal including the task"
+      operationId: "get_animal"
+      parameters:
+      - name: "identifier"
+        in: "path"
+        description: "Identifier to get an animal information"
+        required: true
+        type: "string"
+        minLength: 1
+      - name: "roleId"
+        in: "path"
+        required: true
+        type: "string"
+        minLength: 1
+      - name: "Accept_Language"
+        in: "header"
+        description: "The desired language for response content.\n[RFC 2616](https://tools.ietf.org/html/rfc2616#page-104)\n"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/AnimalWithTask"
+        "404":
+          description: "Invalid identifier supplied"
+      x-swagger-router-controller: "swagger_server.controllers.park_controller"
+definitions:
+  AnimalResponse:
+    type: "object"
+    properties:
+      animals:
+        type: "array"
+        description: "TODO 1 animal can have more than 1 task"
+        items:
+          $ref: "#/definitions/Animal"
+        minItems: 1
+    example:
+      animals:
+      - image: "image"
+        id: "id"
+        title: "title"
+        tasks:
+        - roleId: "roleId"
+          exercise: "exercise"
+          audio: "audio"
+        - roleId: "roleId"
+          exercise: "exercise"
+          audio: "audio"
+      - image: "image"
+        id: "id"
+        title: "title"
+        tasks:
+        - roleId: "roleId"
+          exercise: "exercise"
+          audio: "audio"
+        - roleId: "roleId"
+          exercise: "exercise"
+          audio: "audio"
+  Animal:
+    type: "object"
+    required:
+    - "id"
+    - "tasks"
+    - "title"
+    properties:
+      id:
+        type: "string"
+        minLength: 1
+      title:
+        type: "string"
+        minLength: 1
+      image:
+        type: "string"
+        description: "Url to the image"
+      tasks:
+        type: "array"
+        items:
+          $ref: "#/definitions/Task"
+    example:
+      image: "image"
+      id: "id"
+      title: "title"
+      tasks:
+      - roleId: "roleId"
+        exercise: "exercise"
+        audio: "audio"
+      - roleId: "roleId"
+        exercise: "exercise"
+        audio: "audio"
+  AnimalWithTask:
+    type: "object"
+    required:
+    - "id"
+    - "task"
+    - "title"
+    properties:
+      id:
+        type: "string"
+        minLength: 1
+      title:
+        type: "string"
+        minLength: 1
+      image:
+        type: "string"
+        description: "Url to the image"
+      task:
+        $ref: "#/definitions/Task"
+    example:
+      image: "image"
+      task:
+        roleId: "roleId"
+        exercise: "exercise"
+        audio: "audio"
+      id: "id"
+      title: "title"
+  Task:
+    type: "object"
+    required:
+    - "exercise"
+    - "roleId"
+    properties:
+      roleId:
+        type: "string"
+        minLength: 1
+      exercise:
+        type: "string"
+        minLength: 1
+      audio:
+        type: "string"
+        description: "Url"
+    example:
+      roleId: "roleId"
+      exercise: "exercise"
+      audio: "audio"
+  ParksResponse:
+    type: "object"
+    properties:
+      parks:
+        type: "array"
+        items:
+          $ref: "#/definitions/Park"
+        minItems: 1
+    example:
+      parks:
+      - description: "description"
+        id: "id"
+        title: "title"
+        numberOfQrCodes: 0
+      - description: "description"
+        id: "id"
+        title: "title"
+        numberOfQrCodes: 0
+  Park:
+    type: "object"
+    required:
+    - "id"
+    - "title"
+    properties:
+      id:
+        type: "string"
+        minLength: 1
+      title:
+        type: "string"
+        minLength: 1
+      description:
+        type: "string"
+        description: "Description of the park"
+      numberOfQrCodes:
+        type: "integer"
+        format: "int32"
+        minimum: 0
+    example:
+      description: "description"
+      id: "id"
+      title: "title"
+      numberOfQrCodes: 0
+  RoleResponse:
+    type: "object"
+    properties:
+      roles:
+        type: "array"
+        items:
+          $ref: "#/definitions/Role"
+        minItems: 1
+    example:
+      roles:
+      - description: "description"
+        id: "id"
+        title: "title"
+      - description: "description"
+        id: "id"
+        title: "title"
+  Role:
+    type: "object"
+    required:
+    - "id"
+    - "title"
+    properties:
+      id:
+        type: "string"
+        minLength: 1
+      title:
+        type: "string"
+        description: "Title"
+        minLength: 1
+      description:
+        type: "string"
+        description: "Short description of the character"
+    example:
+      description: "description"
+      id: "id"
+      title: "title"
+parameters:
+  language:
+    name: "Accept_Language"
+    in: "header"
+    description: "The desired language for response content.\n[RFC 2616](https://tools.ietf.org/html/rfc2616#page-104)\n"
+    required: false
+    type: "string"
