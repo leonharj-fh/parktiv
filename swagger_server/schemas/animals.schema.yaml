@@ -1,0 +1,60 @@
+%YAML 1.2
+---
+$schema: http://json-schema.org/draft-04/schema#
+additionalProperties: false
+description: Schema describing animals related properties. 
+properties:
+  animals:
+    minItems: 1 
+    items:
+      $ref: '#/definitions/Animal'
+    type: array
+required:
+  - animals
+type: object
+
+definitions:
+
+  Animal:
+    additionalProperties: false
+    properties:
+      id:
+        type: "string"
+        minLength: 1
+      title:
+        type: "string"
+        minLength: 1
+      image:
+        type: "string"
+        description: "Url to the image"
+      taskCategory:
+        type: "string"
+      tasks:
+        minItems: 1
+        items:
+          $ref: "#/definitions/Task"
+        type: array
+    required:
+      - "id"
+      - "tasks"
+      - "title"
+    type: "object"
+
+  Task:
+    additionalProperties: false
+    properties:
+      roleId:
+        type: "string"
+        minLength: 1
+      exercise:
+        type: "string"
+        minLength: 1
+      audio:
+        type: "string"
+        description: "Url"
+    required:
+      - "exercise"
+      - "roleId"
+    type: "object"
+
+...

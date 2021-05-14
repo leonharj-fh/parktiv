@@ -1,0 +1,39 @@
+%YAML 1.2
+---
+$schema: http://json-schema.org/draft-04/schema#
+additionalProperties: false
+description: Schema describing parks related properties. 
+properties:
+  parks:
+    minItems: 1 
+    items:
+      $ref: '#/definitions/Park'
+    type: array
+required:
+  - parks
+type: object
+
+definitions:
+
+  Park:
+    properties:
+      id:
+        minLength: 1
+        type: "string"
+      title:
+        minLength: 1
+        type: string
+      description:
+        description: "Description of the park"
+        type: string
+      numberOfQrCodes:
+        minimum: 0
+        format: "int32"
+        type: "integer"
+    required: 
+      - id
+      - title
+    type: object
+
+
+...
