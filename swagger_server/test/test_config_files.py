@@ -1,11 +1,14 @@
 # coding: utf-8
 
-from swagger_server.models.animal_response import AnimalResponse
-from jsonschema import validate
 import yaml
-from pathlib import Path
-import collections
 import os
+
+from swagger_server.models.animal_response import AnimalResponse
+from swagger_server.models.parks_response import ParksResponse
+from swagger_server.models.role_response import RoleResponse
+
+from jsonschema import validate
+from pathlib import Path
 
 
 def getFileAsYaml(fileName):
@@ -34,6 +37,11 @@ class TestParkController():
 
         checkUniqueIdsInFile(yaml, "animals")
 
+        response = AnimalResponse.from_dict(yaml)
+        assert response
+        assert type(response.animals) == list
+        assert response.animals[0].id
+
     def test_parks_schema_get(self):
         rootDir = Path(__file__).parent.parent
 
@@ -43,6 +51,12 @@ class TestParkController():
 
         checkUniqueIdsInFile(yaml, "parks")
 
+        response = ParksResponse.from_dict(yaml)
+        assert response
+        assert type(response.parks) == list
+        assert response.parks[0].id
+
+
     def test_roles_schema_get(self):
         rootDir = Path(__file__).parent.parent
 
@@ -51,6 +65,12 @@ class TestParkController():
         validate(yaml, schema)
 
         checkUniqueIdsInFile(yaml, "roles")
+
+        response = RoleResponse.from_dict(yaml)
+        assert response
+        assert type(response.roles) == list
+        assert response.roles[0].id
+
 
     def test_animals_role_relation_exists(self):
         rootDir = Path(__file__).parent.parent
@@ -71,7 +91,4 @@ class TestParkController():
         rootDir = Path(__file__).parent.parent
         yamlAnimals = getFileAsYaml(os.path.join(rootDir,"config","animals","de","animals.yaml"))
 
-        response = AnimalResponse.from_dict(yamlAnimals)
-        assert response
-        assert type(response.animals) == list
-        assert response.animals[0].id
+

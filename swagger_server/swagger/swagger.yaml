@@ -324,4 +324,5 @@ parameters:
     in: "header"
     description: "The desired language for response content.\n[RFC 2616](https://tools.ietf.org/html/rfc2616#page-104)\n"
     required: false
+    default: de
     type: "string"
