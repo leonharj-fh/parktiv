@@ -6,7 +6,7 @@ animals:
     title: Elephant
     image: Url
     taskCategory: Empowerment
-    tasks: 
+    tasks:
       - roleId: flink
         exercise: Stampfe in den Boden wie der Elefant, mache dich dabei groß wie ein Elefant.
         audio: Url

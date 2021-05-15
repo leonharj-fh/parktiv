@@ -1,0 +1,9 @@
+%YAML 1.2
+---
+
+roles:
+  - id: flink
+    title: Flink
+  - id: geschickt
+    title: Geschickt
+...

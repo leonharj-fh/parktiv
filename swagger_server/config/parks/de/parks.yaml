@@ -1,0 +1,9 @@
+%YAML 1.2
+---
+
+parks:
+  - id: tuerkenschanzpark
+    title: Türkenschanzpark
+    description: TODO
+
+...
