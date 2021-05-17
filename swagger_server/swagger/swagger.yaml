@@ -114,11 +114,17 @@ paths:
         required: true
         type: "string"
         minLength: 1
+        pattern: "^[a-zA-Z0-9_-]{1,30}$"
+        x-regex: "^[a-zA-Z0-9_-]{1,30}$"
+        x-modifiers: []
       - name: "roleId"
         in: "path"
         required: true
         type: "string"
         minLength: 1
+        pattern: "^[a-zA-Z0-9_-]{1,30}$"
+        x-regex: "^[a-zA-Z0-9_-]{1,30}$"
+        x-modifiers: []
       - name: "Accept_Language"
         in: "header"
         description: "The desired language for response content.\n[RFC 2616](https://tools.ietf.org/html/rfc2616#page-104)\n"
@@ -174,6 +180,9 @@ definitions:
       id:
         type: "string"
         minLength: 1
+        pattern: "^[a-zA-Z0-9_-]{1,30}$"
+        x-regex: "^[a-zA-Z0-9_-]{1,30}$"
+        x-modifiers: []
       title:
         type: "string"
         minLength: 1
@@ -205,6 +214,9 @@ definitions:
       id:
         type: "string"
         minLength: 1
+        pattern: "^[a-zA-Z0-9_-]{1,30}$"
+        x-regex: "^[a-zA-Z0-9_-]{1,30}$"
+        x-modifiers: []
       title:
         type: "string"
         minLength: 1
@@ -230,6 +242,9 @@ definitions:
       roleId:
         type: "string"
         minLength: 1
+        pattern: "^[a-zA-Z0-9_-]{1,30}$"
+        x-regex: "^[a-zA-Z0-9_-]{1,30}$"
+        x-modifiers: []
       exercise:
         type: "string"
         minLength: 1
@@ -267,6 +282,9 @@ definitions:
       id:
         type: "string"
         minLength: 1
+        pattern: "^[a-zA-Z0-9_-]{1,30}$"
+        x-regex: "^[a-zA-Z0-9_-]{1,30}$"
+        x-modifiers: []
       title:
         type: "string"
         minLength: 1
@@ -307,6 +325,9 @@ definitions:
       id:
         type: "string"
         minLength: 1
+        pattern: "^[a-zA-Z0-9_-]{1,30}$"
+        x-regex: "^[a-zA-Z0-9_-]{1,30}$"
+        x-modifiers: []
       title:
         type: "string"
         description: "Title"
@@ -324,5 +345,4 @@ parameters:
     in: "header"
     description: "The desired language for response content.\n[RFC 2616](https://tools.ietf.org/html/rfc2616#page-104)\n"
     required: false
-    default: de
     type: "string"

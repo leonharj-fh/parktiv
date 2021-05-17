@@ -80,6 +80,8 @@ class AnimalWithTask(Model):
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
         if id is not None and len(id) < 1:
             raise ValueError("Invalid value for `id`, length must be greater than or equal to `1`")  # noqa: E501
+        if id is not None and not re.search(r'^[a-zA-Z0-9_-]{1,30}$', id):  # noqa: E501
+            raise ValueError("Invalid value for `id`, must be a follow pattern or equal to `/^[a-zA-Z0-9_-]{1,30}$/`")  # noqa: E501
 
         self._id = id
 

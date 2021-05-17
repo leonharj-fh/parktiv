@@ -74,6 +74,8 @@ class Task(Model):
             raise ValueError("Invalid value for `role_id`, must not be `None`")  # noqa: E501
         if role_id is not None and len(role_id) < 1:
             raise ValueError("Invalid value for `role_id`, length must be greater than or equal to `1`")  # noqa: E501
+        if role_id is not None and not re.search(r'^[a-zA-Z0-9_-]{1,30}$', role_id):  # noqa: E501
+            raise ValueError("Invalid value for `role_id`, must be a follow pattern or equal to `/^[a-zA-Z0-9_-]{1,30}$/`")  # noqa: E501
 
         self._role_id = role_id
 
