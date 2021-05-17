@@ -11,7 +11,6 @@ from swagger_server.models.parks_response import ParksResponse  # noqa: E501
 from swagger_server.models.role_response import RoleResponse  # noqa: E501
 from swagger_server.test import BaseTestCase
 
-
 class TestParkController(BaseTestCase):
     """ParkController integration test stubs"""
 
@@ -20,7 +19,7 @@ class TestParkController(BaseTestCase):
 
         Retrieve a random list of animal ids
         """
-        query_string = [('size', 2)]
+        query_string = [('size', 1)]
         headers = [('Accept_Language', 'Accept_Language_example')]
         response = self.client.open(
             '/parktiv/animals/memory/random',
@@ -37,7 +36,7 @@ class TestParkController(BaseTestCase):
         """
         headers = [('Accept_Language', 'Accept_Language_example')]
         response = self.client.open(
-            '/parktiv/animals/{identifier}/task/{roleId}'.format(identifier='identifier_example', roleId='roleId_example'),
+            '/parktiv/animals/{identifier}/task/{roleId}'.format(identifier='elephant', roleId='flink'),
             method='GET',
             headers=headers)
         self.assert200(response,
