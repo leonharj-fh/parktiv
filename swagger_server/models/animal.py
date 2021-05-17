@@ -8,6 +8,7 @@ from typing import List, Dict  # noqa: F401
 from swagger_server.models.base_model_ import Model
 from swagger_server.models.task import Task
 from swagger_server import util
+import re
 
 
 class Animal(Model):

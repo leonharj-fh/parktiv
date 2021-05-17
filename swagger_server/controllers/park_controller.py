@@ -7,9 +7,12 @@ from swagger_server.models.parks_response import ParksResponse  # noqa: E501
 from swagger_server.models.role_response import RoleResponse  # noqa: E501
 from swagger_server import util
 from flask import abort
+from flask_parameter_validation import ValidateParameters, Route, Form, Query
+from typing import List, Optional
 
 
-def animals_memory_random_get(size, Accept_Language=None):  # noqa: E501
+@ValidateParameters()
+def animals_memory_random_get(size: int = Query(min_int=0, max_int=100, default=5),  Accept_Language: Optional[str] = Form("de")):  # noqa: E501
     """Retrieve a random list of animal ids
 
     Retrieve a random list of animals. Each animal id is returned twice. # noqa: E501
@@ -23,8 +26,8 @@ def animals_memory_random_get(size, Accept_Language=None):  # noqa: E501
     """
     return 'do some magic!'
 
-
-def get_animal(identifier, roleId, Accept_Language=None):  # noqa: E501
+@ValidateParameters()
+def get_animal(identifier: str = Route(pattern="^[a-zA-Z0-9_-]{1,30}$"), roleId: str = Route(pattern="^[a-zA-Z0-9_-]{1,30}$"), Accept_Language: Optional[str] = Form("de")):  # noqa: E501
     """Get a specific animal including the task
 
     Get a specific animal including the task # noqa: E501
