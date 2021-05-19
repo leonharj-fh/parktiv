@@ -1,10 +1,14 @@
 from swagger_server.configLoader import ConfigurationLoader
+import logging
 
 __data = {}
 
 def __initData():
-    data = {}
-    __data["de"] = ConfigurationLoader("de")
+    languages = "de"
+
+    logging.info("Initialize data")
+    __data[languages] = ConfigurationLoader(languages)
+    logging.info("Initialize finished for languages {}".format(languages))
 
 def getConfigurationData(language):
     return __data[language]

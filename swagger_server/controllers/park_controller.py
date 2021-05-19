@@ -14,9 +14,11 @@ from flask_parameter_validation import ValidateParameters, Route, Form, Query
 from typing import List, Optional
 
 
-
 @ValidateParameters()
-def animals_memory_random_get(size: int = Query(min_int=0, max_int=100, default=5),  Accept_Language: Optional[str] = Form("de")):  # noqa: E501
+def animals_memory_random_get(
+    size: int = Query(min_int=0, max_int=100, default=5),
+    Accept_Language: Optional[str] = Form("de"),
+):  # noqa: E501
     """Retrieve a random list of animal ids
 
     Retrieve a random list of animals. Each animal id is returned twice. # noqa: E501
@@ -28,17 +30,24 @@ def animals_memory_random_get(size: int = Query(min_int=0, max_int=100, default=
 
     :rtype: List[str]
     """
-    animals = AnimalResponse.from_dict(controller.getConfigurationData(Accept_Language).animalsData).animals
+    animals = AnimalResponse.from_dict(
+        controller.getConfigurationData(Accept_Language).animalsData
+    ).animals
     if size > len(animals):
         abort(409, "Parameter size must be smaller equals {}".format(len(animals)))
-    animalIds = list(map(lambda animal : animal.id, animals))
+    animalIds = list(map(lambda animal: animal.id, animals))
     randomIds = random.sample(animalIds, k=size)
 
     # duplicate all ids and shuffle it again.
-    return random.sample(randomIds * 2, k=len(randomIds)*2)
+    return random.sample(randomIds * 2, k=len(randomIds) * 2)
+
 
 @ValidateParameters()
-def get_animal(identifier: str = Route(pattern="^[a-zA-Z0-9_-]{1,30}$"), roleId: str = Route(pattern="^[a-zA-Z0-9_-]{1,30}$"), Accept_Language: Optional[str] = Form("de")):  # noqa: E501
+def get_animal(
+    identifier: str = Route(pattern="^[a-zA-Z0-9_-]{1,30}$"),
+    roleId: str = Route(pattern="^[a-zA-Z0-9_-]{1,30}$"),
+    Accept_Language: Optional[str] = Form("de"),
+):  # noqa: E501
     """Get a specific animal including the task
 
     Get a specific animal including the task # noqa: E501
@@ -53,15 +62,17 @@ def get_animal(identifier: str = Route(pattern="^[a-zA-Z0-9_-]{1,30}$"), roleId:
     :rtype: AnimalWithTask
     """
 
-    animals = AnimalResponse.from_dict(controller.getConfigurationData(Accept_Language).animalsData).animals
-    oAnimal = next(filter(lambda animal : animal.id == identifier, animals), None)
+    animals = AnimalResponse.from_dict(
+        controller.getConfigurationData(Accept_Language).animalsData
+    ).animals
+    oAnimal = next(filter(lambda animal: animal.id == identifier, animals), None)
 
     if oAnimal is None:
-        abort(404, "'{}' not found.".format(identifier),)
+        abort(404, "'{}' not found.".format(identifier))
 
-    oTask = next(filter(lambda task : task.role_id == roleId, oAnimal.tasks), None)
+    oTask = next(filter(lambda task: task.role_id == roleId, oAnimal.tasks), None)
     if oTask is None:
-        abort(404, "'{}' not found.".format(roleId),)
+        abort(404, "'{}' not found.".format(roleId))
 
     return AnimalWithTask(oAnimal.id, oAnimal.title, oAnimal.image, oTask)
 
@@ -76,7 +87,9 @@ def list_animal(Accept_Language="de"):  # noqa: E501
 
     :rtype: AnimalResponse
     """
-    return AnimalResponse.from_dict(controller.getConfigurationData(Accept_Language).animalsData)
+    return AnimalResponse.from_dict(
+        controller.getConfigurationData(Accept_Language).animalsData
+    )
 
 
 def list_park(Accept_Language="de"):  # noqa: E501
@@ -89,7 +102,9 @@ def list_park(Accept_Language="de"):  # noqa: E501
 
     :rtype: ParksResponse
     """
-    return ParksResponse.from_dict(controller.getConfigurationData(Accept_Language).parksData)
+    return ParksResponse.from_dict(
+        controller.getConfigurationData(Accept_Language).parksData
+    )
 
 
 def roles_get(Accept_Language="de"):  # noqa: E501
@@ -102,4 +117,6 @@ def roles_get(Accept_Language="de"):  # noqa: E501
 
     :rtype: RoleResponse
     """
-    return RoleResponse.from_dict(controller.getConfigurationData(Accept_Language).rolesData)
+    return RoleResponse.from_dict(
+        controller.getConfigurationData(Accept_Language).rolesData
+    )
