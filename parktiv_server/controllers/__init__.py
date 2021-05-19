@@ -1,4 +1,4 @@
-from swagger_server.configLoader import ConfigurationLoader
+from parktiv_server.configLoader import ConfigurationLoader
 import logging
 
 __data = {}

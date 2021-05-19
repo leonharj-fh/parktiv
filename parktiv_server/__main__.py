@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import connexion
-from swagger_server import encoder
+from parktiv_server import encoder
 
 def main():
 	options = {"swagger_ui": False}

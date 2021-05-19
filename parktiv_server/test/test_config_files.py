@@ -1,9 +1,9 @@
 # coding: utf-8
 
-from swagger_server.models.animal_response import AnimalResponse
-from swagger_server.models.parks_response import ParksResponse
-from swagger_server.models.role_response import RoleResponse
-import swagger_server.configLoader as loader
+from parktiv_server.models.animal_response import AnimalResponse
+from parktiv_server.models.parks_response import ParksResponse
+from parktiv_server.models.role_response import RoleResponse
+import parktiv_server.configLoader as loader
 
 from jsonschema import validate
 

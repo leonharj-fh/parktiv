@@ -30,7 +30,7 @@ paths:
           description: "OK"
           schema:
             $ref: "#/definitions/ParksResponse"
-      x-swagger-router-controller: "swagger_server.controllers.park_controller"
+      x-swagger-router-controller: "parktiv_server.controllers.park_controller"
   /animals:
     get:
       tags:
@@ -49,7 +49,7 @@ paths:
           description: "OK"
           schema:
             $ref: "#/definitions/AnimalResponse"
-      x-swagger-router-controller: "swagger_server.controllers.park_controller"
+      x-swagger-router-controller: "parktiv_server.controllers.park_controller"
   /animals/memory/random:
     get:
       tags:
@@ -80,7 +80,7 @@ paths:
               minLength: 1
         "409":
           description: "Invalid size value"
-      x-swagger-router-controller: "swagger_server.controllers.park_controller"
+      x-swagger-router-controller: "parktiv_server.controllers.park_controller"
   /roles:
     get:
       tags:
@@ -99,7 +99,7 @@ paths:
           description: "OK"
           schema:
             $ref: "#/definitions/RoleResponse"
-      x-swagger-router-controller: "swagger_server.controllers.park_controller"
+      x-swagger-router-controller: "parktiv_server.controllers.park_controller"
   /animals/{identifier}/task/{roleId}:
     get:
       tags:
@@ -137,7 +137,7 @@ paths:
             $ref: "#/definitions/AnimalWithTask"
         "404":
           description: "Invalid identifier supplied"
-      x-swagger-router-controller: "swagger_server.controllers.park_controller"
+      x-swagger-router-controller: "parktiv_server.controllers.park_controller"
 definitions:
   AnimalResponse:
     type: "object"

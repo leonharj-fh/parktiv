@@ -3,12 +3,12 @@ import random
 import connexion
 import six
 
-from swagger_server.models.animal_response import AnimalResponse  # noqa: E501
-from swagger_server.models.animal_with_task import AnimalWithTask  # noqa: E501
-from swagger_server.models.parks_response import ParksResponse  # noqa: E501
-from swagger_server.models.role_response import RoleResponse  # noqa: E501
-import swagger_server.controllers as controller
-from swagger_server import util
+from parktiv_server.models.animal_response import AnimalResponse  # noqa: E501
+from parktiv_server.models.animal_with_task import AnimalWithTask  # noqa: E501
+from parktiv_server.models.parks_response import ParksResponse  # noqa: E501
+from parktiv_server.models.role_response import RoleResponse  # noqa: E501
+import parktiv_server.controllers as controller
+from parktiv_server import util
 from flask import abort
 from flask_parameter_validation import ValidateParameters, Route, Form, Query
 from typing import List, Optional

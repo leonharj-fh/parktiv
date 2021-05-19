@@ -5,11 +5,12 @@ from __future__ import absolute_import
 from flask import json
 from six import BytesIO
 
-from swagger_server.models.animal_response import AnimalResponse  # noqa: E501
-from swagger_server.models.animal_with_task import AnimalWithTask  # noqa: E501
-from swagger_server.models.parks_response import ParksResponse  # noqa: E501
-from swagger_server.models.role_response import RoleResponse  # noqa: E501
-from swagger_server.test import BaseTestCase
+from parktiv_server.models.animal_response import AnimalResponse  # noqa: E501
+from parktiv_server.models.animal_with_task import AnimalWithTask  # noqa: E501
+from parktiv_server.models.parks_response import ParksResponse  # noqa: E501
+from parktiv_server.models.role_response import RoleResponse  # noqa: E501
+from parktiv_server.test import BaseTestCase
+import json
 
 class TestParkController(BaseTestCase):
     """ParkController integration test stubs"""
@@ -19,7 +20,7 @@ class TestParkController(BaseTestCase):
 
         Retrieve a random list of animal ids
         """
-        query_string = [('size', 1)]
+        query_string = [('size', 2)]
         headers = [('Accept_Language', 'Accept_Language_example')]
         response = self.client.open(
             '/parktiv/animals/memory/random',
@@ -28,6 +29,8 @@ class TestParkController(BaseTestCase):
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
+
+        decodedData = (response.data.decode('utf-8')) # .data.decode('utf-8'))
 
     def test_get_animal(self):
         """Test case for get_animal
@@ -41,6 +44,7 @@ class TestParkController(BaseTestCase):
             headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
+        # print(dict(response.data.decode('utf-8')))
 
     def test_list_animal(self):
         """Test case for list_animal
