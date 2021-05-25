@@ -1,16 +1,6 @@
 # coding: utf-8
 
-
-
-from flask import json
-from six import BytesIO
-
-from parktiv_server.models.animal_response import AnimalResponse  # noqa: E501
-from parktiv_server.models.animal_with_task import AnimalWithTask  # noqa: E501
-from parktiv_server.models.parks_response import ParksResponse  # noqa: E501
-from parktiv_server.models.role_response import RoleResponse  # noqa: E501
 from parktiv_server.test import BaseTestCase
-import logging
 
 class TestParkController(BaseTestCase):
     """ParkController integration test stubs"""
@@ -43,7 +33,7 @@ class TestParkController(BaseTestCase):
         """
         headers = [('Accept_Language', 'Accept_Language_example')]
         response = self.client.open(
-            '/parktiv/animals/{identifier}/task/{roleId}'.format(identifier='elephant', roleId='flink'),
+            '/parktiv/animals/{identifier}/task/{roleId}'.format(identifier='elephant', roleId='faenger'),
             method='GET',
             headers=headers)
         self.assert200(response,

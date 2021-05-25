@@ -5,48 +5,48 @@ animals:
   - id: elephant
     title: Elephant
     image:
-      url: "/static/images/elephant.png"
+      url: "elephant.png"
       copyright: "<a href=\"http://www.freepik.com\">Designed by brgfx / Freepik</a>"
     taskCategory: Empowerment
     tasks:
-      - roleId: flink
+      - roleId: faenger
         exercise: Stampfe in den Boden wie der Elefant, mache dich dabei groß wie ein Elefant.
         audio: Url
-      - roleId: geschickt
+      - roleId: koordinator
         exercise: Strecke deine Arme zur Seite, wie die Ohren des Elefanten und schwinge langsam nach hinten und vorne.
         audio: Url
   - id: giraffe
     title: Giraffe
     image:
-      url: "/static/images/giraffe.png"
+      url: "giraffe.png"
       copyright: "<a href=\"http://www.freepik.com\">Designed by winkimages / Freepik</a>"
     tasks:
-      - roleId: flink
-        exercise: mach dich groß wie die Giraffe, versuche dabei mit den Händen, vorgestellte Blätter, die ganz hoch oben hängen zu erwischen
-      - roleId: geschickt
-        exercise: mach dich groß wie die Giraffe, versuche dabei mit den Händen, vorgestellte Blätter, die ganz hoch oben hängen zu erwischen
+      - roleId: faenger
+        exercise: Mach dich groß wie die Giraffe, versuche dabei mit den Händen, vorgestellte Blätter, die ganz hoch oben hängen zu erwischen
+      - roleId: koordinator
+        exercise: Mach dich groß wie die Giraffe, versuche dabei mit den Händen, vorgestellte Blätter, die ganz hoch oben hängen zu erwischen
   - id: affe
     title: Affe
     image:
-      url: "/static/images/affe.png"
+      url: "affe.png"
       copyright: "<a href=\"http://www.freepik.com\">Designed by pch.vector / Freepik</a>"
     taskCategory: "Koordination, Balance"
     tasks:
-      - roleId: flink
-        exercise: stell dir vor du kletterst auf einen Baum, mach die Bewegung dazu in der Luft nach. Schaffst du es die Beine und Arme jeweils diagonal hochzuheben?
-      - roleId: geschickt
-        exercise: setze einen Fuß vor den anderen und gehe auf einer gedachten Linie, wie wenn du über einen Ast balancierst
+      - roleId: faenger
+        exercise: Stell dir vor du kletterst auf einen Baum, mach die Bewegung dazu in der Luft nach. Schaffst du es die Beine und Arme jeweils diagonal hochzuheben?
+      - roleId: koordinator
+        exercise: Setze einen Fuß vor den anderen und gehe auf einer gedachten Linie, wie wenn du über einen Ast balancierst.
   - id: kaenguruh
     title: Känguruh
     image:
-      url: "/static/images/kaenguruh.png"
+      url: "kaenguruh.png"
       copyright: "<a href=\"http://www.freepik.com\">Designed by Ajipebriana / Freepik</a>"
     taskCategory: "hüpfen, boxen"
     tasks:
-      - roleId: flink
-        exercise: mache 10 Känguruhsprünge, versuche dabei die Knie bis zur Brust hoch zu ziehen
-      - roleId: geschickt
-        exercise: 2 Känguruhs haben einen Revierkampf, boxe mit deinen Armen in die Luft um das andere Känguruh zu vertreiben
+      - roleId: faenger
+        exercise: Mache 10 Känguruhsprünge, versuche dabei die Knie bis zur Brust hoch zu ziehen.
+      - roleId: koordinator
+        exercise: 2 Känguruhs haben einen Revierkampf, boxe mit deinen Armen in die Luft um das andere Känguruh zu vertreiben.
 
 
 ...

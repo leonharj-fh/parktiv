@@ -4,6 +4,8 @@ from parktiv_server.models.animal_response import AnimalResponse
 from parktiv_server.models.parks_response import ParksResponse
 from parktiv_server.models.role_response import RoleResponse
 import parktiv_server.configLoader as loader
+import os
+from pathlib import Path
 
 from jsonschema import validate
 
@@ -68,6 +70,14 @@ class TestParkController():
             assert len(animalRoleIds) > 0
             assert set(roleIds) == set(animalRoleIds)
             #assert all(elem in roleIds for elem in animalRoleIds)
+
+    def test_animal_images(self):
+        projectFolder = Path(__file__).parent.parent
+        animalReponse = AnimalResponse.from_dict(loader.getAnimalsConfig(defaultLanguage))
+
+        for animal in animalReponse.animals:
+            url = animal.image.url
+            assert os.path.exists(os.path.join(projectFolder, url))
 
 
 

@@ -8,7 +8,7 @@ from parktiv_server.models.animal_with_task import AnimalWithTask  # noqa: E501
 from parktiv_server.models.parks_response import ParksResponse  # noqa: E501
 from parktiv_server.models.role_response import RoleResponse  # noqa: E501
 import parktiv_server.controllers as controller
-from parktiv_server import util
+
 from flask import abort
 from flask_parameter_validation import ValidateParameters, Route, Form, Query
 from typing import List, Optional
@@ -16,7 +16,7 @@ from typing import List, Optional
 
 @ValidateParameters()
 def animals_memory_random_get(
-    size: int = Query(min_int=0, max_int=100, default=5),
+    size: int = Query(min_int=0, max_int=100, default=4),
     Accept_Language: Optional[str] = Form("de"),
 ):  # noqa: E501
     """Retrieve a random list of animal ids
@@ -76,8 +76,8 @@ def get_animal(
 
     return AnimalWithTask(oAnimal.id, oAnimal.title, oAnimal.image, oTask)
 
-
-def list_animal(Accept_Language="de"):  # noqa: E501
+@ValidateParameters()
+def list_animal(Accept_Language: Optional[str] = Form("de")):  # noqa: E501
     """List of all available animals with exercises
 
     List of all available animals with exercises # noqa: E501

@@ -10,8 +10,19 @@ animalSchemaFileName = "animals.schema.yaml"
 parkSchemaFileName = "parks.schema.yaml"
 roleSchemaFileName = "roles.schema.yaml"
 
+__staticImageFolder = os.path.join("static","images")
+
+def __transformAnimalsImageUrl(animalDict):
+    for animal in animalDict["animals"]:
+        if "image" in animal and "url" in animal["image"]:
+            animal["image"]["url"] = os.path.join(__staticImageFolder, animal["image"]["url"])
+    return animalDict
+
+
 def getAnimalsConfig(language):
-    return getFileAsYaml(os.path.join(__getConfigFolder(language), animalFileName))
+    animalDict = getFileAsYaml(os.path.join(__getConfigFolder(language), animalFileName))
+
+    return __transformAnimalsImageUrl(animalDict)
 
 def getAnimalsSchema():
     return getFileAsYaml(os.path.join(__getSchemaFolder(), animalSchemaFileName))

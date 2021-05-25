@@ -2,8 +2,8 @@
 ---
 
 roles:
-  - id: flink
-    title: Flink
-  - id: geschickt
-    title: Geschickt
+  - id: faenger
+    title: Fänger
+  - id: koordinator
+    title: Koordinator
 ...

@@ -63,7 +63,7 @@ paths:
         in: "query"
         required: true
         type: "integer"
-        default: 5
+        default: 4
         maximum: 100
         minimum: 1
       - name: "Accept_Language"
