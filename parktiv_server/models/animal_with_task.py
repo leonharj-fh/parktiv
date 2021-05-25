@@ -7,6 +7,7 @@ from typing import List, Dict  # noqa: F401
 
 from parktiv_server.models.base_model_ import Model
 from parktiv_server.models.task import Task
+from parktiv_server.models.image import Image
 from parktiv_server import util
 import re
 
@@ -17,7 +18,7 @@ class AnimalWithTask(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, title: str=None, image: str=None, task: Task=None):  # noqa: E501
+    def __init__(self, id: str=None, title: str=None, image: Image=None, task: Task=None):  # noqa: E501
         """AnimalWithTask - a model defined in Swagger
 
         :param id: The id of this AnimalWithTask.  # noqa: E501
@@ -25,14 +26,14 @@ class AnimalWithTask(Model):
         :param title: The title of this AnimalWithTask.  # noqa: E501
         :type title: str
         :param image: The image of this AnimalWithTask.  # noqa: E501
-        :type image: str
+        :type image: Image
         :param task: The task of this AnimalWithTask.  # noqa: E501
         :type task: Task
         """
         self.swagger_types = {
             'id': str,
             'title': str,
-            'image': str,
+            'image': Image,
             'task': Task
         }
 
@@ -112,24 +113,22 @@ class AnimalWithTask(Model):
         self._title = title
 
     @property
-    def image(self) -> str:
+    def image(self) -> Image:
         """Gets the image of this AnimalWithTask.
 
-        Url to the image  # noqa: E501
 
         :return: The image of this AnimalWithTask.
-        :rtype: str
+        :rtype: Image
         """
         return self._image
 
     @image.setter
-    def image(self, image: str):
+    def image(self, image: Image):
         """Sets the image of this AnimalWithTask.
 
-        Url to the image  # noqa: E501
 
         :param image: The image of this AnimalWithTask.
-        :type image: str
+        :type image: Image
         """
 
         self._image = image

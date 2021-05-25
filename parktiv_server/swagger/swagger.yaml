@@ -64,6 +64,7 @@ paths:
         required: true
         type: "integer"
         default: 5
+        maximum: 100
         minimum: 1
       - name: "Accept_Language"
         in: "header"
@@ -74,10 +75,7 @@ paths:
         "200":
           description: "OK"
           schema:
-            type: "array"
-            items:
-              type: "string"
-              minLength: 1
+            $ref: "#/definitions/MemoryResponse"
         "409":
           description: "Invalid size value"
       x-swagger-router-controller: "parktiv_server.controllers.park_controller"
@@ -139,18 +137,49 @@ paths:
           description: "Invalid identifier supplied"
       x-swagger-router-controller: "parktiv_server.controllers.park_controller"
 definitions:
+  Image:
+    type: "object"
+    required:
+    - "url"
+    properties:
+      url:
+        type: "string"
+        minLength: 1
+      copyright:
+        type: "string"
+        minLength: 1
+    example:
+      copyright: "copyright"
+      url: "url"
+  MemoryResponse:
+    required:
+    - "ids"
+    properties:
+      ids:
+        type: "array"
+        items:
+          type: "string"
+          minLength: 1
+          pattern: "^[a-zA-Z0-9_-]{1,30}$"
+        minItems: 1
+    example:
+      ids:
+      - "ids"
+      - "ids"
   AnimalResponse:
     type: "object"
     properties:
       animals:
         type: "array"
-        description: "TODO 1 animal can have more than 1 task"
+        description: "1 animal can have more than 1 task"
         items:
           $ref: "#/definitions/Animal"
         minItems: 1
     example:
       animals:
-      - image: "image"
+      - image:
+          copyright: "copyright"
+          url: "url"
         id: "id"
         title: "title"
         tasks:
@@ -160,7 +189,9 @@ definitions:
         - roleId: "roleId"
           exercise: "exercise"
           audio: "audio"
-      - image: "image"
+      - image:
+          copyright: "copyright"
+          url: "url"
         id: "id"
         title: "title"
         tasks:
@@ -187,14 +218,15 @@ definitions:
         type: "string"
         minLength: 1
       image:
-        type: "string"
-        description: "Url to the image"
+        $ref: "#/definitions/Image"
       tasks:
         type: "array"
         items:
           $ref: "#/definitions/Task"
     example:
-      image: "image"
+      image:
+        copyright: "copyright"
+        url: "url"
       id: "id"
       title: "title"
       tasks:
@@ -221,12 +253,13 @@ definitions:
         type: "string"
         minLength: 1
       image:
-        type: "string"
-        description: "Url to the image"
+        $ref: "#/definitions/Image"
       task:
         $ref: "#/definitions/Task"
     example:
-      image: "image"
+      image:
+        copyright: "copyright"
+        url: "url"
       task:
         roleId: "roleId"
         exercise: "exercise"

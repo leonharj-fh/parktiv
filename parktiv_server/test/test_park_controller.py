@@ -61,6 +61,7 @@ class TestParkController(BaseTestCase):
             headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
+        jsonData = response.get_json()
 
     def test_list_park(self):
         """Test case for list_park

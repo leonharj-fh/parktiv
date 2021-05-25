@@ -4,7 +4,9 @@
 animals:
   - id: elephant
     title: Elephant
-    image: Url
+    image:
+      url: "/static/images/elephant.png"
+      copyright: "<a href=\"http://www.freepik.com\">Designed by brgfx / Freepik</a>"
     taskCategory: Empowerment
     tasks:
       - roleId: flink
@@ -15,7 +17,9 @@ animals:
         audio: Url
   - id: giraffe
     title: Giraffe
-    image: N/A
+    image:
+      url: "/static/images/giraffe.png"
+      copyright: "<a href=\"http://www.freepik.com\">Designed by winkimages / Freepik</a>"
     tasks:
       - roleId: flink
         exercise: mach dich groß wie die Giraffe, versuche dabei mit den Händen, vorgestellte Blätter, die ganz hoch oben hängen zu erwischen
@@ -23,7 +27,9 @@ animals:
         exercise: mach dich groß wie die Giraffe, versuche dabei mit den Händen, vorgestellte Blätter, die ganz hoch oben hängen zu erwischen
   - id: affe
     title: Affe
-    image: N/A
+    image:
+      url: "/static/images/affe.png"
+      copyright: "<a href=\"http://www.freepik.com\">Designed by pch.vector / Freepik</a>"
     taskCategory: "Koordination, Balance"
     tasks:
       - roleId: flink
@@ -32,6 +38,9 @@ animals:
         exercise: setze einen Fuß vor den anderen und gehe auf einer gedachten Linie, wie wenn du über einen Ast balancierst
   - id: kaenguruh
     title: Känguruh
+    image:
+      url: "/static/images/kaenguruh.png"
+      copyright: "<a href=\"http://www.freepik.com\">Designed by Ajipebriana / Freepik</a>"
     taskCategory: "hüpfen, boxen"
     tasks:
       - roleId: flink
