@@ -10,7 +10,7 @@ from parktiv_server.models.animal_with_task import AnimalWithTask  # noqa: E501
 from parktiv_server.models.parks_response import ParksResponse  # noqa: E501
 from parktiv_server.models.role_response import RoleResponse  # noqa: E501
 from parktiv_server.test import BaseTestCase
-import json
+import logging
 
 class TestParkController(BaseTestCase):
     """ParkController integration test stubs"""
@@ -30,7 +30,11 @@ class TestParkController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
-        decodedData = (response.data.decode('utf-8')) # .data.decode('utf-8'))
+        jsonData = response.get_json()
+        assert type(jsonData) == list
+        assert len(jsonData) == 4
+        assert len(set(jsonData)) == 2
+
 
     def test_get_animal(self):
         """Test case for get_animal
@@ -44,7 +48,6 @@ class TestParkController(BaseTestCase):
             headers=headers)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
-        # print(dict(response.data.decode('utf-8')))
 
     def test_list_animal(self):
         """Test case for list_animal
