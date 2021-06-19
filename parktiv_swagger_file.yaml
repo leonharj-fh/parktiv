@@ -1,0 +1,313 @@
+openapi: 3.0.1
+info:
+  title: Parktiv
+  description: Parktiv Backend Service PBS
+  version: "0.1"
+servers:
+  - url: /parktiv
+tags:
+  - name: park
+paths:
+  /parks:
+    get:
+      tags:
+        - park
+      summary: List of parks containing a QR-Code
+      description: |
+        Returns a list of all parks which are currently support by Parktiv and having a QR-Code
+      operationId: listPark
+      parameters:
+        - name: Accept-Language
+          in: header
+          description: |
+            The desired language for response content.
+            [RFC 2616](https://tools.ietf.org/html/rfc2616#page-104)
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParksResponse'
+  /animals:
+    get:
+      tags:
+        - park
+      summary: List of all available animals with exercises
+      description: List of all available animals with exercises
+      operationId: listAnimal
+      parameters:
+        - name: Accept-Language
+          in: header
+          description: |
+            The desired language for response content.
+            [RFC 2616](https://tools.ietf.org/html/rfc2616#page-104)
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalResponse'
+  /animals/memory/random:
+    get:
+      tags:
+        - park
+      summary: Retrieve a random list of animal ids
+      description: "Returns a random list of animal identifiers. Each identifier is\
+        \ returned twice to support the game memory \n"
+      parameters:
+        - name: size
+          in: query
+          schema:
+            maximum: 100
+            minimum: 1
+            type: integer
+            default: 4
+        - name: Accept-Language
+          in: header
+          description: |
+            The desired language for response content.
+            [RFC 2616](https://tools.ietf.org/html/rfc2616#page-104)
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MemoryResponse'
+        409:
+          description: Invalid size value
+          content: {}
+  /roles:
+    get:
+      tags:
+        - park
+      summary: List of roles which can be chosen to complete different exersices
+      description: List of roles which can be chosen to complete different exersices
+      parameters:
+        - name: Accept-Language
+          in: header
+          description: |
+            The desired language for response content.
+            [RFC 2616](https://tools.ietf.org/html/rfc2616#page-104)
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleResponse'
+  /animals/{identifier}/task/{roleId}:
+    get:
+      tags:
+        - park
+      summary: Get a specific animal including the task
+      description: Get a specific animal including the the related task for the role.
+      operationId: getAnimal
+      parameters:
+        - name: identifier
+          in: path
+          description: Animal identifier
+          required: true
+          schema:
+            minLength: 1
+            pattern: ^[a-zA-Z0-9_-]{1,30}$
+            type: string
+        - name: roleId
+          in: path
+          description: Role identifier
+          required: true
+          schema:
+            minLength: 1
+            pattern: ^[a-zA-Z0-9_-]{1,30}$
+            type: string
+        - name: Accept-Language
+          in: header
+          description: |
+            The desired language for response content.
+            [RFC 2616](https://tools.ietf.org/html/rfc2616#page-104)
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnimalWithTask'
+        404:
+          description: Invalid identifier supplied
+          content: {}
+components:
+  schemas:
+    Image:
+      required:
+        - url
+      type: object
+      properties:
+        url:
+          minLength: 1
+          type: string
+          description: Server path to an image
+        copyright:
+          minLength: 1
+          type: string
+          description: Copyright information for the image which must be set when
+            displaying
+    MemoryResponse:
+      required:
+        - ids
+      type: object
+      properties:
+        ids:
+          minItems: 1
+          type: array
+          items:
+            minLength: 1
+            pattern: ^[a-zA-Z0-9_-]{1,30}$
+            type: string
+    AnimalResponse:
+      type: object
+      properties:
+        animals:
+          minItems: 1
+          type: array
+          description: List of animals
+          items:
+            $ref: '#/components/schemas/Animal'
+    Animal:
+      required:
+        - id
+        - tasks
+        - title
+      type: object
+      properties:
+        id:
+          minLength: 1
+          pattern: ^[a-zA-Z0-9_-]{1,30}$
+          type: string
+          description: Animal identifier
+        title:
+          minLength: 1
+          type: string
+          description: Title of the animal
+        image:
+          $ref: '#/components/schemas/Image'
+        tasks:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+    AnimalWithTask:
+      required:
+        - id
+        - task
+        - title
+      type: object
+      properties:
+        id:
+          minLength: 1
+          pattern: ^[a-zA-Z0-9_-]{1,30}$
+          type: string
+          description: Animal identifier
+        title:
+          minLength: 1
+          type: string
+          description: Title of the animal
+        image:
+          $ref: '#/components/schemas/Image'
+        task:
+          $ref: '#/components/schemas/Task'
+    Task:
+      required:
+        - exercise
+        - roleId
+      type: object
+      properties:
+        roleId:
+          minLength: 1
+          pattern: ^[a-zA-Z0-9_-]{1,30}$
+          type: string
+          description: Task related role identifier
+        exercise:
+          minLength: 1
+          type: string
+          description: Human readable description of an exercise which should be performed
+        audio:
+          type: string
+          description: Url to an audio file which explains the exercise acoustically.
+    ParksResponse:
+      type: object
+      properties:
+        parks:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/Park'
+    Park:
+      required:
+        - id
+        - title
+      type: object
+      properties:
+        id:
+          minLength: 1
+          pattern: ^[a-zA-Z0-9_-]{1,30}$
+          type: string
+          description: Park identifier
+        title:
+          minLength: 1
+          type: string
+          description: The name/title of the park
+        description:
+          type: string
+          description: Human readable description of the park
+        numberOfQrCodes:
+          minimum: 0
+          type: integer
+          description: Number of QR-Codes the park contains
+          format: int32
+    RoleResponse:
+      type: object
+      properties:
+        roles:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+    Role:
+      required:
+        - id
+        - title
+      type: object
+      properties:
+        id:
+          minLength: 1
+          pattern: ^[a-zA-Z0-9_-]{1,30}$
+          type: string
+          description: Role identifier
+        title:
+          minLength: 1
+          type: string
+          description: The name/title of the role
+        description:
+          type: string
+          description: Short description of the character
+  parameters:
+    language:
+      name: Accept-Language
+      in: header
+      description: |
+        The desired language for response content.
+        [RFC 2616](https://tools.ietf.org/html/rfc2616#page-104)
+      schema:
+        type: string
