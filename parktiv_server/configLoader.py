@@ -18,11 +18,10 @@ def __transformAnimalsImageUrl(animalDict):
             animal["image"]["url"] = os.path.join(__staticImageFolder, animal["image"]["url"])
     return animalDict
 
-
 def getAnimalsConfig(language):
-    animalDict = getFileAsYaml(os.path.join(__getConfigFolder(language), animalFileName))
-
-    return __transformAnimalsImageUrl(animalDict)
+    return getFileAsYaml(os.path.join(__getConfigFolder(language), animalFileName))
+    # TODO add filepath really necessary is it will be a web resource / vs \
+    # return __transformAnimalsImageUrl(animalDict)
 
 def getAnimalsSchema():
     return getFileAsYaml(os.path.join(__getSchemaFolder(), animalSchemaFileName))

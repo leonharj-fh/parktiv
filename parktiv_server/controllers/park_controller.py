@@ -1,8 +1,5 @@
 import random
 
-import connexion
-import six
-
 from parktiv_server.models.animal_response import AnimalResponse  # noqa: E501
 from parktiv_server.models.animal_with_task import AnimalWithTask  # noqa: E501
 from parktiv_server.models.parks_response import ParksResponse  # noqa: E501
