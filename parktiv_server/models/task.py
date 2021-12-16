@@ -15,7 +15,6 @@ class Task(Model):
 
     Do not edit the class manually.
     """
-
     def __init__(self, role_id: str=None, exercise: str=None, audio: str=None):  # noqa: E501
         """Task - a model defined in Swagger
 
@@ -37,7 +36,6 @@ class Task(Model):
             'exercise': 'exercise',
             'audio': 'audio'
         }
-
         self._role_id = role_id
         self._exercise = exercise
         self._audio = audio
@@ -57,6 +55,7 @@ class Task(Model):
     def role_id(self) -> str:
         """Gets the role_id of this Task.
 
+        Task related role identifier  # noqa: E501
 
         :return: The role_id of this Task.
         :rtype: str
@@ -67,16 +66,13 @@ class Task(Model):
     def role_id(self, role_id: str):
         """Sets the role_id of this Task.
 
+        Task related role identifier  # noqa: E501
 
         :param role_id: The role_id of this Task.
         :type role_id: str
         """
         if role_id is None:
             raise ValueError("Invalid value for `role_id`, must not be `None`")  # noqa: E501
-        if role_id is not None and len(role_id) < 1:
-            raise ValueError("Invalid value for `role_id`, length must be greater than or equal to `1`")  # noqa: E501
-        if role_id is not None and not re.search(r'^[a-zA-Z0-9_-]{1,30}$', role_id):  # noqa: E501
-            raise ValueError("Invalid value for `role_id`, must be a follow pattern or equal to `/^[a-zA-Z0-9_-]{1,30}$/`")  # noqa: E501
 
         self._role_id = role_id
 
@@ -84,6 +80,7 @@ class Task(Model):
     def exercise(self) -> str:
         """Gets the exercise of this Task.
 
+        Human readable description of an exercise which should be performed  # noqa: E501
 
         :return: The exercise of this Task.
         :rtype: str
@@ -94,14 +91,13 @@ class Task(Model):
     def exercise(self, exercise: str):
         """Sets the exercise of this Task.
 
+        Human readable description of an exercise which should be performed  # noqa: E501
 
         :param exercise: The exercise of this Task.
         :type exercise: str
         """
         if exercise is None:
             raise ValueError("Invalid value for `exercise`, must not be `None`")  # noqa: E501
-        if exercise is not None and len(exercise) < 1:
-            raise ValueError("Invalid value for `exercise`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._exercise = exercise
 
@@ -109,7 +105,7 @@ class Task(Model):
     def audio(self) -> str:
         """Gets the audio of this Task.
 
-        Url  # noqa: E501
+        Url to an audio file which explains the exercise acoustically.  # noqa: E501
 
         :return: The audio of this Task.
         :rtype: str
@@ -120,7 +116,7 @@ class Task(Model):
     def audio(self, audio: str):
         """Sets the audio of this Task.
 
-        Url  # noqa: E501
+        Url to an audio file which explains the exercise acoustically.  # noqa: E501
 
         :param audio: The audio of this Task.
         :type audio: str

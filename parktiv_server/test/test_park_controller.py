@@ -11,7 +11,7 @@ class TestParkController(BaseTestCase):
         Retrieve a random list of animal ids
         """
         query_string = [('size', 2)]
-        headers = [('Accept_Language', 'Accept_Language_example')]
+        headers = [('Accept_Language', 'de')]
         response = self.client.open(
             '/parktiv/animals/memory/random',
             method='GET',
@@ -21,9 +21,10 @@ class TestParkController(BaseTestCase):
                        'Response body is : ' + response.data.decode('utf-8'))
 
         jsonData = response.get_json()
-        assert type(jsonData) == list
-        assert len(jsonData) == 4
-        assert len(set(jsonData)) == 2
+        assert type(jsonData) == dict
+        data = jsonData['ids']
+        assert len(data) == 4
+        assert len(set(data)) == 2
 
 
     def test_get_animal(self):

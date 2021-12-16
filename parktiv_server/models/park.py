@@ -15,7 +15,6 @@ class Park(Model):
 
     Do not edit the class manually.
     """
-
     def __init__(self, id: str=None, title: str=None, description: str=None, number_of_qr_codes: int=None):  # noqa: E501
         """Park - a model defined in Swagger
 
@@ -41,7 +40,6 @@ class Park(Model):
             'description': 'description',
             'number_of_qr_codes': 'numberOfQrCodes'
         }
-
         self._id = id
         self._title = title
         self._description = description
@@ -62,6 +60,7 @@ class Park(Model):
     def id(self) -> str:
         """Gets the id of this Park.
 
+        Park identifier  # noqa: E501
 
         :return: The id of this Park.
         :rtype: str
@@ -72,16 +71,13 @@ class Park(Model):
     def id(self, id: str):
         """Sets the id of this Park.
 
+        Park identifier  # noqa: E501
 
         :param id: The id of this Park.
         :type id: str
         """
         if id is None:
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
-        if id is not None and len(id) < 1:
-            raise ValueError("Invalid value for `id`, length must be greater than or equal to `1`")  # noqa: E501
-        if id is not None and not re.search(r'^[a-zA-Z0-9_-]{1,30}$', id):  # noqa: E501
-            raise ValueError("Invalid value for `id`, must be a follow pattern or equal to `/^[a-zA-Z0-9_-]{1,30}$/`")  # noqa: E501
 
         self._id = id
 
@@ -89,6 +85,7 @@ class Park(Model):
     def title(self) -> str:
         """Gets the title of this Park.
 
+        The name/title of the park  # noqa: E501
 
         :return: The title of this Park.
         :rtype: str
@@ -99,14 +96,13 @@ class Park(Model):
     def title(self, title: str):
         """Sets the title of this Park.
 
+        The name/title of the park  # noqa: E501
 
         :param title: The title of this Park.
         :type title: str
         """
         if title is None:
             raise ValueError("Invalid value for `title`, must not be `None`")  # noqa: E501
-        if title is not None and len(title) < 1:
-            raise ValueError("Invalid value for `title`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._title = title
 
@@ -114,7 +110,7 @@ class Park(Model):
     def description(self) -> str:
         """Gets the description of this Park.
 
-        Description of the park  # noqa: E501
+        Human readable description of the park  # noqa: E501
 
         :return: The description of this Park.
         :rtype: str
@@ -125,7 +121,7 @@ class Park(Model):
     def description(self, description: str):
         """Sets the description of this Park.
 
-        Description of the park  # noqa: E501
+        Human readable description of the park  # noqa: E501
 
         :param description: The description of this Park.
         :type description: str
@@ -137,6 +133,7 @@ class Park(Model):
     def number_of_qr_codes(self) -> int:
         """Gets the number_of_qr_codes of this Park.
 
+        Number of QR-Codes the park contains  # noqa: E501
 
         :return: The number_of_qr_codes of this Park.
         :rtype: int
@@ -147,11 +144,10 @@ class Park(Model):
     def number_of_qr_codes(self, number_of_qr_codes: int):
         """Sets the number_of_qr_codes of this Park.
 
+        Number of QR-Codes the park contains  # noqa: E501
 
         :param number_of_qr_codes: The number_of_qr_codes of this Park.
         :type number_of_qr_codes: int
         """
-        if number_of_qr_codes is not None and number_of_qr_codes < 0:  # noqa: E501
-            raise ValueError("Invalid value for `number_of_qr_codes`, must be a value greater than or equal to `0`")  # noqa: E501
 
         self._number_of_qr_codes = number_of_qr_codes

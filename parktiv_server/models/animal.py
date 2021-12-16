@@ -17,7 +17,6 @@ class Animal(Model):
 
     Do not edit the class manually.
     """
-
     def __init__(self, id: str=None, title: str=None, image: Image=None, tasks: List[Task]=None):  # noqa: E501
         """Animal - a model defined in Swagger
 
@@ -43,7 +42,6 @@ class Animal(Model):
             'image': 'image',
             'tasks': 'tasks'
         }
-
         self._id = id
         self._title = title
         self._image = image
@@ -64,6 +62,7 @@ class Animal(Model):
     def id(self) -> str:
         """Gets the id of this Animal.
 
+        Animal identifier  # noqa: E501
 
         :return: The id of this Animal.
         :rtype: str
@@ -74,16 +73,13 @@ class Animal(Model):
     def id(self, id: str):
         """Sets the id of this Animal.
 
+        Animal identifier  # noqa: E501
 
         :param id: The id of this Animal.
         :type id: str
         """
         if id is None:
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
-        if id is not None and len(id) < 1:
-            raise ValueError("Invalid value for `id`, length must be greater than or equal to `1`")  # noqa: E501
-        if id is not None and not re.search(r'^[a-zA-Z0-9_-]{1,30}$', id):  # noqa: E501
-            raise ValueError("Invalid value for `id`, must be a follow pattern or equal to `/^[a-zA-Z0-9_-]{1,30}$/`")  # noqa: E501
 
         self._id = id
 
@@ -91,6 +87,7 @@ class Animal(Model):
     def title(self) -> str:
         """Gets the title of this Animal.
 
+        Title of the animal  # noqa: E501
 
         :return: The title of this Animal.
         :rtype: str
@@ -101,14 +98,13 @@ class Animal(Model):
     def title(self, title: str):
         """Sets the title of this Animal.
 
+        Title of the animal  # noqa: E501
 
         :param title: The title of this Animal.
         :type title: str
         """
         if title is None:
             raise ValueError("Invalid value for `title`, must not be `None`")  # noqa: E501
-        if title is not None and len(title) < 1:
-            raise ValueError("Invalid value for `title`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._title = title
 

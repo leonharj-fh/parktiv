@@ -2,6 +2,7 @@ import random
 
 from parktiv_server.models.animal_response import AnimalResponse  # noqa: E501
 from parktiv_server.models.animal_with_task import AnimalWithTask  # noqa: E501
+from parktiv_server.models.memory_response import MemoryResponse  # noqa: E501
 from parktiv_server.models.parks_response import ParksResponse  # noqa: E501
 from parktiv_server.models.role_response import RoleResponse  # noqa: E501
 import parktiv_server.controllers as controller
@@ -30,13 +31,15 @@ def animals_memory_random_get(
     animals = AnimalResponse.from_dict(
         controller.getConfigurationData(Accept_Language).animalsData
     ).animals
+    # TODO fixit added parameter cast for testing
+    size = int(size)
     if size > len(animals):
         abort(409, "Parameter size must be smaller equals {}".format(len(animals)))
     animalIds = list(map(lambda animal: animal.id, animals))
     randomIds = random.sample(animalIds, k=size)
 
     # duplicate all ids and shuffle it again.
-    return random.sample(randomIds * 2, k=len(randomIds) * 2)
+    return MemoryResponse(random.sample(randomIds * 2, k=len(randomIds) * 2))
 
 
 @ValidateParameters()

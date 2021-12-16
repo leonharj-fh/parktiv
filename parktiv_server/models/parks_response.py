@@ -15,7 +15,6 @@ class ParksResponse(Model):
 
     Do not edit the class manually.
     """
-
     def __init__(self, parks: List[Park]=None):  # noqa: E501
         """ParksResponse - a model defined in Swagger
 
@@ -29,7 +28,6 @@ class ParksResponse(Model):
         self.attribute_map = {
             'parks': 'parks'
         }
-
         self._parks = parks
 
     @classmethod

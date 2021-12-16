@@ -15,7 +15,6 @@ class RoleResponse(Model):
 
     Do not edit the class manually.
     """
-
     def __init__(self, roles: List[Role]=None):  # noqa: E501
         """RoleResponse - a model defined in Swagger
 
@@ -29,7 +28,6 @@ class RoleResponse(Model):
         self.attribute_map = {
             'roles': 'roles'
         }
-
         self._roles = roles
 
     @classmethod

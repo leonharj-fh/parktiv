@@ -1,5 +1,5 @@
-connexion == 2.7.0
-python_dateutil ==  2.8.1
+connexion >= 2.9.0
+python_dateutil >=  2.8.1
 setuptools >= 56.2.0
 gevent >= 21.1.2
 pyyaml >= 5.1.2

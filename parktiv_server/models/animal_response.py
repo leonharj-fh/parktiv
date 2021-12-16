@@ -14,7 +14,6 @@ class AnimalResponse(Model):
 
     Do not edit the class manually.
     """
-
     def __init__(self, animals: List[Animal]=None):  # noqa: E501
         """AnimalResponse - a model defined in Swagger
 
@@ -28,7 +27,6 @@ class AnimalResponse(Model):
         self.attribute_map = {
             'animals': 'animals'
         }
-
         self._animals = animals
 
     @classmethod
@@ -46,7 +44,7 @@ class AnimalResponse(Model):
     def animals(self) -> List[Animal]:
         """Gets the animals of this AnimalResponse.
 
-        TODO 1 animal can have more than 1 task  # noqa: E501
+        List of animals  # noqa: E501
 
         :return: The animals of this AnimalResponse.
         :rtype: List[Animal]
@@ -57,7 +55,7 @@ class AnimalResponse(Model):
     def animals(self, animals: List[Animal]):
         """Sets the animals of this AnimalResponse.
 
-        TODO 1 animal can have more than 1 task  # noqa: E501
+        List of animals  # noqa: E501
 
         :param animals: The animals of this AnimalResponse.
         :type animals: List[Animal]

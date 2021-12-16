@@ -1,6 +1,6 @@
 # coding: utf-8
 
-
+from __future__ import absolute_import
 from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
@@ -14,7 +14,6 @@ class Image(Model):
 
     Do not edit the class manually.
     """
-
     def __init__(self, url: str=None, copyright: str=None):  # noqa: E501
         """Image - a model defined in Swagger
 
@@ -32,7 +31,6 @@ class Image(Model):
             'url': 'url',
             'copyright': 'copyright'
         }
-
         self._url = url
         self._copyright = copyright
 
@@ -51,6 +49,7 @@ class Image(Model):
     def url(self) -> str:
         """Gets the url of this Image.
 
+        Server path to an image  # noqa: E501
 
         :return: The url of this Image.
         :rtype: str
@@ -61,14 +60,13 @@ class Image(Model):
     def url(self, url: str):
         """Sets the url of this Image.
 
+        Server path to an image  # noqa: E501
 
         :param url: The url of this Image.
         :type url: str
         """
         if url is None:
             raise ValueError("Invalid value for `url`, must not be `None`")  # noqa: E501
-        if url is not None and len(url) < 1:
-            raise ValueError("Invalid value for `url`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._url = url
 
@@ -76,6 +74,7 @@ class Image(Model):
     def copyright(self) -> str:
         """Gets the copyright of this Image.
 
+        Copyright information for the image which must be set when displaying  # noqa: E501
 
         :return: The copyright of this Image.
         :rtype: str
@@ -86,11 +85,10 @@ class Image(Model):
     def copyright(self, copyright: str):
         """Sets the copyright of this Image.
 
+        Copyright information for the image which must be set when displaying  # noqa: E501
 
         :param copyright: The copyright of this Image.
         :type copyright: str
         """
-        if copyright is not None and len(copyright) < 1:
-            raise ValueError("Invalid value for `copyright`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._copyright = copyright

@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Parktiv
   description: Parktiv Backend Service PBS
-  version: "0.2"
+  version: "0.3"
 servers:
 - url: /parktiv
 tags:
