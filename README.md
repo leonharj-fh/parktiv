@@ -28,7 +28,7 @@ All configuration files can be found in `/parktiv_server/config/<languageCode>/`
 # Setup:
 * `pip install -r requirements.txt`
 * `pip install -r test-requirements.txt (for testing)`<br>
-The application `Parktiv` was tested with python versions `[3.7, 3.8, 3.9]`
+The application `Parktiv` was tested with python versions `[3.7, 3.8, 3.9, 3.10]`
 
 # Running tests:
 `cd ./parktiv` <br>
