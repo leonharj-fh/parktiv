@@ -41,7 +41,7 @@ The application `Parktiv` was tested with python versions `[3.7, 3.8, 3.9, 3.10]
 The current configuration runs a development server on port `8080`. To change port or server implementation modify `./partkiv_server/__main__.py`
 
 # Repository
-* https://github.com/leonharj-fh/parktiv (Repository is private)
+* https://github.com/leonharj-fh/parktiv
 
 # Deployment
 * We use the service <https://www.digitalocean.com/> to deploy our project.
